@@ -1,0 +1,23 @@
+Ficheiro apoio
+Botao primario
+ativo: #42b4ff
+hover: #75cfff
+disable: #232b37
+texto disable: #8c8c94
+texto ativo: #0f141a
+
+Botao normal:
+bg ativo: #333843
+bg hover: #1b232d
+bg disable: #161d26
+texto disable: #8c8c94
+border: #75cfff
+texto ativo: #42b4ff
+
+Pagina background: #161d26
+Cor texto: #ffffff
+Texto barra: #c6c6cd
+Texto header: #ebebf0
+Texto secundario (titulos de caixas de input): #a4a4ad
+Texto barra selecionado: #42b4ff
+Error text: #ff7a7a

@@ -1,0 +1,130 @@
+h1 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 20px;
+}
+
+.secao-motorista, .secao-cliente {
+  flex: 1;
+  padding: 20px;
+  background-color: #333843;
+  border-radius: 10px;
+}
+
+.secao-cliente {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 20px;
+}
+
+.cliente-title {  
+  margin-top: 0em;
+}
+
+button {
+  background-color: #42b4ff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 1%;
+}
+
+button:hover {
+  background-color: #75cfff;
+}
+
+.motorista-list {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+.motorista-item {
+  color: #42b4ff;
+  display: flex;
+  margin: 0.2em;
+  padding: 0.3em 0;
+  background-color: #333843;
+  justify-content: center;
+  border: 2px solid #75cfff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.motorista-item:hover {
+  background-color: #1b232d;
+  left: .1em;
+}
+
+.motorista-item a {
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+  align-items: center;
+  width: 100%;
+}
+
+
+
+.botao-pedir {
+  margin-top: 1em;
+  text-align: center;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .module {
+    font-size: 10px;
+    max-height: 75px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    margin: 0;
+  }
+  .col-1-4 {
+    width: 50%;
+  }
+}
+.secao-gestor {
+  flex: 1;
+  padding: 20px;
+  background-color: #333843;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 20px;
+}
+
+.gestor-title {
+  margin-top: 0em;
+}
+
+.botao-gestor {
+  margin-top: 1em;
+  text-align: center;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+}

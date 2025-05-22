@@ -1,0 +1,92 @@
+.container {
+  padding: 20px;
+  background-color: #232733;
+  border-radius: 10px;
+  max-width: 900px;
+  margin: 30px auto;
+  color: #ebebf0;
+}
+
+h2, h3 {
+  color: #42b4ff;
+  margin-bottom: 1em;
+}
+
+label {
+  margin-right: 15px;
+  color: #ebebf0;
+}
+
+input[type="date"] {
+  padding: 8px;
+  border: 1px solid #42b4ff;
+  border-radius: 4px;
+  background-color: #1b232d;
+  color: #ebebf0;
+  margin-right: 10px;
+}
+
+button {
+  background-color: #42b4ff;
+  color: #0f141a;
+  border: 2px solid #42b4ff;
+  border-radius: 10px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 10px 5px 20px 0;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+button:hover {
+  background-color: #75cfff;
+  border-color: #75cfff;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background-color: #333843;
+  border: 1px solid #42b4ff;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 15px;
+  color: #ebebf0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: background-color 0.2s;
+}
+
+li:hover {
+  background-color: #1b232d;
+}
+
+a {
+  color: #42b4ff;
+  text-decoration: underline;
+  margin-left: 10px;
+}
+
+a:hover {
+  color: #75cfff;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 10px;
+    max-width: 100%;
+  }
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+}
+.error-message {
+  color: red;
+  margin: 10px 0;
+}

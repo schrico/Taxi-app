@@ -1,0 +1,75 @@
+<script src="servico-viagem.component.ts"></script>
+<div class="form-container">
+  <h2>Calcular Preço da Viagem</h2>
+
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="calculoForm" (ngSubmit)="calcularCustoViagem()">
+
+        <div class="form-group mb-3">
+          <label for="nivelConforto">Nível de Conforto:</label>
+          <select
+            id="nivelConforto"
+            formControlName="nivelConforto"
+            class="form-control"
+          >
+            <option value="basico">Básico ({{ppmBasico}}€/min)</option>
+            <option value="luxuoso">Luxuoso ({{ppmLuxuoso}}€/min)</option>
+          </select>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="dataHoraInicio">Data e Hora de Início:</label>
+          <input
+            type="datetime-local"
+            id="dataHoraInicio"
+            formControlName="dataHoraInicio"
+            class="form-control"
+            [class.is-invalid]="calculoForm.get('dataHoraInicio')?.invalid && calculoForm.get('dataHoraInicio')?.touched"
+          >
+          <div class="invalid-feedback">
+            Por favor, informe a data e hora de início.
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="dataHoraFim">Data e Hora de Fim:</label>
+          <input
+            type="datetime-local"
+            id="dataHoraFim"
+            formControlName="dataHoraFim"
+            class="form-control"
+            [class.is-invalid]="calculoForm.get('dataHoraFim')?.invalid && calculoForm.get('dataHoraFim')?.touched"
+          >
+          <div class="invalid-feedback">
+            Por favor, informe a data e hora de fim.
+          </div>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary" [disabled]="calculoForm.invalid">
+            Calcular Custo
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="resetarCalculo()">
+            Limpar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="calculoRealizado" class="card mt-4">
+    <div class="card-header bg-success text-white">
+      Resultado do Cálculo
+    </div>
+    <div class="card-body">
+      <h4>Custo Total da Viagem: {{ resultado | currency:'EUR':'symbol':'1.2-2' }}</h4>
+
+      <p class="mb-0 mt-3">
+        <small class="text-muted">
+          * O cálculo considera o preço por minuto e aplica um acréscimo de {{(acrescimoNoturno).toFixed(0)}}% para viagens realizadas entre 21h e 6h.
+        </small>
+      </p>
+    </div>
+  </div>
+</div>

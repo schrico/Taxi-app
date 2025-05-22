@@ -1,0 +1,31 @@
+<h1>Selecione o tipo de utilizador</h1>
+
+<div class="container">
+  <div class="secao-motorista">
+    <h2>Entrar como Motorista</h2>
+    <input type="text" [(ngModel)]="nif" placeholder="Digite o seu NIF" (input)="validarNif()" maxlength="9">
+    <button [disabled]="!nifValido" (click)="entrarPorNif()">Entrar</button>
+
+    <h3>Ou selecione da lista:</h3>
+    <div class="motorista-list">
+      <div *ngFor="let motorista of motoristasFiltrados" class="motorista-item">
+        <a (click)="entrarPorSelecao(motorista)">
+          {{motorista.nome}} ({{motorista.nif}})
+        </a>
+      </div>   
+    </div>
+  </div>
+
+  <div class="secao-cliente">
+    <h2 class="cliente-title">Cliente</h2>
+    <div class="botao-pedir">
+      <button (click)="irParaPedidoTaxi()">Pedir Táxi</button>
+    </div>
+  </div>
+  <div class="secao-gestor">
+    <h2 class="gestor-title">Gestor</h2>
+    <div class="botao-gestor">
+      <button (click)="irParaGestor()">Entrar como Gestor</button>
+    </div>
+  </div>
+</div>

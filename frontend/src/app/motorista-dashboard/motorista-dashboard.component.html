@@ -1,0 +1,40 @@
+<h2>Dashboard do Motorista</h2>
+<h3>Bem-vindo, {{motorista?.nome}}</h3>
+
+<ul>
+    <li><button (click)="abrirTurnoAdd()" class="btn-link">
+            Requisitar Táxi para Turno
+        </button>
+    </li>
+    <li><button (click)="abrirPedidoTaxi()" class="btn-link">
+            Aceitar pedido para taxi
+        </button>
+    </li>
+    <li><button (click)="abrirRegistarViagem()" class="btn-link">
+      Registar Viagem com Clientes
+        </button>
+    </li>
+</ul>  
+
+ <!-- Coluna da tabela de turnos -->
+  <div class="dashboard-turnos" *ngIf="turnos.length > 0">
+    <h4>Seus Turnos</h4>
+    <table class="turnos-table">
+      <thead>
+        <tr>
+            <th>Início</th>
+            <th>Fim</th>
+            <th>Táxi</th>
+            <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let turno of turnos">
+           <td>{{ turno.inicio | date:'dd/MM/yyyy HH:mm' }}</td>
+           <td>{{ turno.fim | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ turno.taxiId?.marca }} - {{ turno.taxiId?.modelo }}</td>
+          <td>{{ (convertToDate(turno.inicio).getTime() <= now.getTime() && convertToDate(turno.fim).getTime() >= now.getTime()) ? 'Ativo' : 'Inativo' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

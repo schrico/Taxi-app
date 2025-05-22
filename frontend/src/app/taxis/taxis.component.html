@@ -1,0 +1,13 @@
+<div class="header-container">
+  <h2>Lista de Táxis</h2>
+  <button class="add-taxi-button" (click)="navigateToAddTaxi()">Adicionar Táxi</button>
+</div>
+
+<div class="taxis-list">
+  <div *ngFor="let taxi of taxis" class="taxi-item">
+    <a routerLink="/taxis/detail/{{taxi._id}}">
+      <span class="badge">{{taxi.matricula | slice:0:2}} - {{taxi.matricula | slice:2:4}} - {{taxi.matricula | slice:4:6}}</span>
+      <span class="info">{{taxi.marca}} {{taxi.modelo}}</span>
+    </a>
+  </div>
+</div> 

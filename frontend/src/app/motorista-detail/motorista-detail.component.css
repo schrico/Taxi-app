@@ -1,0 +1,54 @@
+.motorista-details {
+  padding: 20px;
+  background-color: #161d26;
+  border-radius: 8px;
+  border: 2px solid #42b4ff;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h2 {
+  text-align: center;
+  color: #ebebf0;
+  margin-bottom: 2rem;
+}
+
+.detail-item {
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+}
+
+.detail-item label {
+  min-width: 120px;
+  color: #a4a4ad;
+  font-weight: 500;
+}
+
+.detail-value {
+  color: #ebebf0;
+  font-size: 1.1rem;
+  padding: 8px 12px;
+  background-color: #232b37;
+  border-radius: 4px;
+  margin-left: 10px;
+  flex-grow: 1;
+}
+
+button {
+  margin-top: 20px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #161d26;
+  color: #42b4ff;
+  border: 2px solid #42b4ff;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto 0;
+}
+
+button:hover {
+  background-color: #42b4ff;
+  color: white;
+}

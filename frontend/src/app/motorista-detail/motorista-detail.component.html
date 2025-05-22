@@ -1,0 +1,40 @@
+<div *ngIf="motorista">
+  <h2>Detalhes do Motorista</h2>
+  <div class="motorista-details">
+    <div class="detail-item">
+      <label>Nome:</label>
+      <span class="detail-value">{{motorista.nome}}</span>
+    </div>
+    <div class="detail-item">
+      <label>Ano de Nascimento:</label>
+      <span class="detail-value">{{motorista.anoNascimento}}</span>
+    </div>
+    <div class="detail-item">
+      <label>NIF:</label>
+      <span class="detail-value">{{motorista.nif}}</span>
+    </div>
+    <div class="detail-item">
+      <label>Género:</label>
+      <span class="detail-value">{{motorista.genero}}</span>
+    </div>
+    <div class="detail-item">
+      <label>Carta de Condução:</label>
+      <span class="detail-value">{{motorista.nmrCartaConducao}}</span>
+    </div>
+
+    <h3>Morada</h3>
+    <div class="detail-item">
+      <label>Rua:</label>
+      <span class="detail-value">{{motorista.morada.rua}}, {{motorista.morada.nmrPorta}}</span>
+    </div>
+    <div class="detail-item">
+      <label>Código Postal:</label>
+      <span class="detail-value">{{motorista.morada.codigoPostal}}</span>
+    </div>
+    <div class="detail-item">
+      <label>Localidade:</label>
+      <span class="detail-value">{{motorista.morada.Localidade}}</span>
+    </div>
+  </div>
+  <button type="button" (click)="goBack()">Voltar</button>
+</div>

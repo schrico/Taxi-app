@@ -1,0 +1,13 @@
+<div class="header-container">
+  <h2>Lista de Serviços</h2>
+  <button class="add-button" (click)="navigateToAddServico()">Adicionar Serviço</button>
+</div>
+
+<div class="servicos-list">
+  <div *ngFor="let servico of servicos" class="servico-item">
+    <a routerLink="/servicos/{{servico._id}}">
+      <span class="badge">Preço (Básico): {{servico.ppmBasico}}</span>
+      <span class="info">Preço (Luxuoso): {{servico.ppmLuxuoso}}</span>
+    </a>
+  </div>
+</div>

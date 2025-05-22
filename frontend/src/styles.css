@@ -1,0 +1,57 @@
+/* Importação da fonte Open Sans do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Estilos globais básicos */
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Estilos de botões básicos */
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #006ce0;
+  color: white;
+}
+
+button:hover {
+  background-color: #002b66;
+  color: #ffffff;
+}
+
+/* Estilos de formulário básicos */
+input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin: 4px 0;
+}
+
+/* Estilos de lista básicos */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Estilos de tabela básicos */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+} 

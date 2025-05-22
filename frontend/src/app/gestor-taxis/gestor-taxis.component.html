@@ -1,0 +1,68 @@
+<div class="header-container">
+  <h2>Lista de Táxis</h2>
+</div>
+<div *ngIf="popupMessage" class="popup-message">
+  {{ popupMessage }}
+</div>
+<div class="taxis-list">
+  <div *ngFor="let taxi of taxis" class="taxi-item">
+    <div class="taxi-info">
+      <span class="badge">{{taxi.marca}} {{taxi.modelo}}</span>
+      <span class="info">Matrícula: {{taxi.matricula}}</span>
+      <span class="info">Ano de Compra: {{taxi.anoCompra}}</span>
+      <span class="info">Conforto: {{taxi.conforto}}</span>
+    </div>
+    <div class="action-buttons">
+      <button (click)="editarTaxi(taxi)" class="edit-btn">Editar</button>
+      <button (click)="removerTaxi(taxi._id)" class="delete-btn">Remover</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" *ngIf="showEditForm">
+  <div class="modal-content">
+    <h3>Editar Táxi</h3>
+    <form (ngSubmit)="salvarEdicao()" #editForm="ngForm">
+      <div class="form-group">
+        <label for="marca">Marca:</label>
+        <select id="marca" name="marca" [(ngModel)]="taxiSelecionado.marca" required (change)="onMarcaChange()">
+          <option value="">Selecione uma marca</option>
+          <option *ngFor="let marca of marcas" [value]="marca">{{marca}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="modelo">Modelo:</label>
+        <select id="modelo" name="modelo" [(ngModel)]="taxiSelecionado.modelo" required [disabled]="!taxiSelecionado.marca">
+          <option value="">Selecione um modelo</option>
+          <option *ngFor="let modelo of modelosDisponiveis" [value]="modelo">{{modelo}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="matricula">Matrícula:</label>
+        <input type="text" id="matricula" name="matricula" [(ngModel)]="taxiSelecionado.matricula" required pattern="^([A-Z]{2}\d{2}[A-Z]{2}|\d{2}[A-Z]{2}\d{2}|\d{4}[A-Z]{2}|[A-Z]{2}\d{4})$">
+        <div *ngIf="editForm.form.controls['matricula']?.invalid && editForm.form.controls['matricula']?.touched" class="error-message">
+          Matrícula inválida. Formatos aceites: AA01AA, 01AA01, 0101AA ou AA0101
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="anoCompra">Ano de Compra:</label>
+        <input type="number" id="anoCompra" name="anoCompra" [(ngModel)]="taxiSelecionado.anoCompra" required min="1900" [max]="anoAtual">
+        <div *ngIf="editForm.form.controls['anoCompra']?.errors?.['max']" class="error-message">
+          O ano não pode ser maior que o ano atual
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="conforto">Conforto:</label>
+        <select id="conforto" name="conforto" [(ngModel)]="taxiSelecionado.conforto" required>
+          <option value="">Selecione o nível de conforto</option>
+          <option value="Básico">Básico</option>
+          <option value="Luxuoso">Luxuoso</option>
+        </select>
+      </div>
+      <div class="form-actions">
+        <button type="submit" [disabled]="!editForm.form.valid">Salvar</button>
+        <button type="button" (click)="cancelarEdicao()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

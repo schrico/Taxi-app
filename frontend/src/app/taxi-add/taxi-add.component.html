@@ -1,0 +1,67 @@
+<div class="form-container">
+  <h2>Adicionar Novo Táxi</h2>
+  <form [formGroup]="taxiForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="matricula">Matrícula:</label>
+      <input type="text" id="matricula" formControlName="matricula" placeholder="Ex: AA23BB">
+      <div *ngIf="taxiForm.get('matricula')?.errors?.['required']" class="error-message">
+        A matrícula é obrigatória
+      </div>
+      <div *ngIf="matriculaExists" class="error-message">
+        {{errorMessage}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="marca">Marca:</label>
+      <select id="marca" formControlName="marca">
+        <option value="">Selecione uma marca</option>
+        <option *ngFor="let marca of marcas" [value]="marca">{{marca}}</option>
+      </select>
+      <div *ngIf="taxiForm.get('marca')?.errors?.['required']" class="error-message">
+        A marca é obrigatória
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="modelo">Modelo:</label>
+      <select id="modelo" formControlName="modelo" [disabled]="!taxiForm.get('marca')?.value">
+        <option value="">Selecione um modelo</option>
+        <option *ngFor="let modelo of modelosDisponiveis" [value]="modelo">{{modelo}}</option>
+      </select>
+      <div *ngIf="taxiForm.get('modelo')?.errors?.['required']" class="error-message">
+        O modelo é obrigatório
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="anoCompra">Ano de Compra:</label>
+      <input type="number" id="anoCompra" formControlName="anoCompra" min="1900" [max]="anoAtual">
+      <div *ngIf="taxiForm.get('anoCompra')?.errors?.['required']" class="error-message">
+        O ano de compra é obrigatório
+      </div>
+      <div *ngIf="taxiForm.get('anoCompra')?.errors?.['min']" class="error-message">
+        O ano deve ser maior que 1900
+      </div>
+      <div *ngIf="taxiForm.get('anoCompra')?.errors?.['max']" class="error-message">
+        O ano não pode ser maior que o ano atual
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="conforto">Nível de Conforto:</label>
+      <select id="conforto" formControlName="conforto">
+        <option value="">Selecione o nível de conforto</option>
+        <option *ngFor="let conforto of confortoOptions" [value]="conforto">{{conforto}}</option>
+      </select>
+      <div *ngIf="taxiForm.get('conforto')?.errors?.['required']" class="error-message">
+        O nível de conforto é obrigatório
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button class="submit-button" type="submit" [disabled]="!taxiForm.valid">Adicionar Táxi</button>
+      <button class="cancel-button" type="button" (click)="cancel()">Cancelar</button>
+    </div>
+  </form>
+</div>

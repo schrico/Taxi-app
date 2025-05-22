@@ -1,0 +1,45 @@
+<div class="form-container">
+  <h2>Adicionar Novo Serviço</h2>
+  <form [formGroup]="servicoForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="ppmBasico">Preço por Minuto (Básico):</label>
+      <input type="number" id="ppmBasico" formControlName="ppmBasico">
+      <div *ngIf="servicoForm.get('ppmBasico')?.errors?.['required']" class="error-message">
+        Este campo é obrigatório.
+      </div>
+      <div *ngIf="servicoForm.get('ppmBasico')?.errors?.['min']" class="error-message">
+        O preço deve ser positivo.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="ppmLuxuoso">Preço por Minuto (Luxuoso):</label>
+      <input type="number" id="ppmLuxuoso" formControlName="ppmLuxuoso">
+      <div *ngIf="servicoForm.get('ppmLuxuoso')?.errors?.['required']" class="error-message">
+        Este campo é obrigatório.
+      </div>
+      <div *ngIf="servicoForm.get('ppmLuxuoso')?.errors?.['min']" class="error-message">
+        O preço deve ser positivo.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="acrescimoNoturno">Acréscimo Noturno (21:00 - 06:00, em porcentagem):</label>
+      <input type="number" id="acrescimoNoturno" formControlName="acrescimoNoturno">
+      <div *ngIf="servicoForm.get('acrescimoNoturno')?.errors?.['required']" class="error-message">
+        Este campo é obrigatório.
+      </div>
+      <div *ngIf="servicoForm.get('acrescimoNoturno')?.errors?.['min']" class="error-message">
+        O acréscimo deve estar entre 0 e 100.
+      </div>
+      <div *ngIf="servicoForm.get('acrescimoNoturno')?.errors?.['max']" class="error-message">
+        O acréscimo deve estar entre 0 e 100.
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button class="submit-button" type="submit" [disabled]="!servicoForm.valid">Adicionar Serviço</button>
+      <button class="cancel-button" type="button" (click)="cancel()">Cancelar</button>
+    </div>
+  </form>
+</div>

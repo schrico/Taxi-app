@@ -1,0 +1,13 @@
+<div class="header-container">
+  <h2>Lista de Motoristas</h2>
+  <button class="add-button" (click)="navigateToAddMotorista()">Adicionar Motorista</button>
+</div>
+
+<div class="motoristas-list">
+  <div *ngFor="let motorista of motoristas" class="motorista-item">
+    <a routerLink="/motoristas/{{motorista._id}}">
+      <span class="badge">{{motorista.nome}}</span>
+      <span class="info">Carta de Condução: {{motorista.nmrCartaConducao}}</span>
+    </a>
+  </div>
+</div>

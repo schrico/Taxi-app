@@ -1,0 +1,8 @@
+<div class="turno-list">
+    <h2>Lista de Turnos</h2>
+    <ul>
+      <li *ngFor="let turno of turnos">
+        Táxi: {{ turno.taxiId.marca }} - {{ turno.taxiId.modelo }} | Início: {{ turno.inicio }} | Fim: {{ turno.fim }}
+      </li>
+    </ul>
+  </div>

@@ -1,0 +1,187 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2, h3, h4 {
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.alert-erro {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.alert-sucesso {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.alerta-turno {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.alerta-turno button {
+  background-color: #ffc107;
+  color: #212529;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.viagem-ativa, .selecao-pedido {
+  margin-top: 25px;
+}
+
+.card-info {
+  background-color: #333843;
+  border: 1px solid #333843;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.info-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.label {
+  width: 120px;
+  font-weight: 500;
+  color: #555;
+}
+
+.value {
+  flex: 1;
+}
+
+.acoes {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-finalizar {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-finalizar:disabled {
+  background-color: #e4606e;
+  cursor: not-allowed;
+}
+
+.lista-pedidos {
+  margin-top: 15px;
+}
+
+.sem-pedidos {
+  text-align: center;
+  padding: 30px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  color: #666;
+}
+
+.pedido-item {
+  background-color: #333843;
+  border: 1px solid #333843;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pedido-item:hover {
+  border-color: #1b232d;
+  background-color: #1b232d;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  color: #ffffff;
+}
+
+.pedido-item.selected {
+  border-color: #1b232d;
+  background-color: #1b232d;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.cliente {
+  font-weight: bold;
+}
+
+.data {
+  color: #666;
+}
+
+.dados-adicionais {
+  display: flex;
+  margin-top: 10px;
+  gap: 15px;
+}
+
+.passageiros, .conforto {
+  background-color: #e9ecef;
+  color: #495057;
+  padding: 4px 8px;
+  border-radius: 15px;
+  font-size: 14px;
+}
+
+.btn-iniciar {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.btn-iniciar:disabled {
+  background-color: #5db97a;
+  cursor: not-allowed;
+}
+
+.footer-links {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.footer-links a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}

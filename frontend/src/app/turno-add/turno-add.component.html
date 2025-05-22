@@ -1,0 +1,49 @@
+<div class="form-container">
+  <h2>Requisitar Táxi para Turno</h2>
+  <form [formGroup]="turnoForm" (ngSubmit)="onSubmit()">
+    <!-- Dados do Turno -->
+    <div class="form-group">
+      <label for="inicio">Início:</label>
+      <input type="datetime-local" id="inicio" formControlName="inicio" (change)="buscarTaxisDisponiveis()">
+      <div *ngIf="turnoForm.get('inicio')?.errors?.['required']" class="error-message">
+        A data e hora de início são obrigatórias
+      </div>
+      <div *ngIf="turnoForm.get('inicio')?.errors?.['inicioInvalido']" class="error-message">
+        O início do turno deve ser posterior à hora atual
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="fim">Fim:</label>
+      <input type="datetime-local" id="fim" formControlName="fim" (change)="buscarTaxisDisponiveis()">
+      <div *ngIf="turnoForm.get('fim')?.errors?.['required']" class="error-message">
+        A data e hora de fim são obrigatórias
+      </div>
+      <div *ngIf="turnoForm.get('fim')?.errors?.['fimInvalido']" class="error-message">
+        O fim do turno deve ser posterior ao início
+      </div>
+      <div *ngIf="turnoForm.get('fim')?.errors?.['duracaoExcedida']" class="error-message">
+        A duração do turno não pode exceder 8 horas
+      </div>
+    </div>
+
+    <!-- Lista de Táxis Disponíveis -->
+    <div *ngIf="mostrarTaxis" class="form-group">
+      <label for="taxiId">Táxi Disponível:</label>
+      <select id="taxiId" formControlName="taxiId">
+        <option value="">Selecione um táxi</option>
+        <option *ngFor="let taxi of taxisDisponiveis" [value]="taxi._id">{{ taxi.marca }} - {{ taxi.modelo }}</option>
+      </select>
+      <div *ngIf="turnoForm.get('taxiId')?.errors?.['required']" class="error-message">
+        É necessário selecionar um táxi
+      </div>
+    </div>
+
+    <!-- Botões -->
+    <div class="button-group">
+      <button class="submit-button" type="submit" [disabled]="!turnoForm.valid">Requisitar Táxi</button>
+      <button class="cancel-button" type="button" (click)="cancel()">Cancelar</button>
+    </div>
+  </form>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+</div>

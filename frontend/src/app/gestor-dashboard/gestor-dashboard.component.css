@@ -1,0 +1,22 @@
+.gestor-container {
+    padding: 20px;
+    text-align: center;
+}
+.opcoes-gestor {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 300px;
+    margin: 20px auto;
+}
+button {
+    background-color: #42b4ff;
+    color: #ffffff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #75cfff;
+}

@@ -1,0 +1,70 @@
+<div class="container">
+  <h2>Relatórios de Táxis e Motoristas</h2>
+  <label>Início: <input type="date" [(ngModel)]="inicio" [max]="hoje"></label>
+  <label>Fim:  <input type="date" [(ngModel)]="fim" [max]="hoje"></label>
+  <button (click)="carregarTotais()">Ver Totais</button>
+
+  <div class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="totais">
+    <h3>Totais</h3>
+    <button (click)="verSubtotais('viagens')">Total de Viagens: {{ totais.totalViagens }}</button>
+    <button (click)="verSubtotais('horas')">Total de Horas: {{ formatHorasMinutos(totais.totalHoras) }}</button>
+    <button (click)="verSubtotais('km')">Total de Km: {{ totais.totalKm | number:'1.2-2' }}</button>
+  </div>
+  <div *ngIf="subtotaisTaxis.length">
+    <h3>Subtotais por Táxi</h3>
+    <ul>
+      <li *ngFor="let s of subtotaisTaxis" (click)="verDetalhes({ _id: s._id, tipo: 'taxi' })">
+        Táxi: {{ s.info?.matricula || s._id }}
+        <ng-container [ngSwitch]="totalSelecionado">
+          <span *ngSwitchCase="'viagens'">
+            {{ s.totalViagens }} {{ s.totalViagens === 1 ? 'viagem' : 'viagens' }}
+          </span> 
+          <span *ngSwitchCase="'horas'"> {{ formatHorasMinutos(s.totalHoras) }}</span>    
+          <span *ngSwitchCase="'km'"> {{ s.totalKm | number:'1.2-2' }} km</span>
+        </ng-container>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="subtotaisMotoristas.length">
+    <h3>Subtotais por Motorista</h3>
+    <ul>
+      <li *ngFor="let s of subtotaisMotoristas" (click)="verDetalhes({ _id: s._id, tipo: 'motorista' })">
+        Motorista: {{ s.info?.nome || s._id }}
+        <ng-container [ngSwitch]="totalSelecionado">
+          <span *ngSwitchCase="'viagens'">
+            {{ s.totalViagens }} {{ s.totalViagens === 1 ? 'viagem' : 'viagens' }}
+          </span> 
+          <span *ngSwitchCase="'horas'"> {{ formatHorasMinutos(s.totalHoras) }}</span>    
+          <span *ngSwitchCase="'km'"> {{ s.totalKm | number:'1.2-2' }} km</span>
+        </ng-container>
+      </li>   
+    </ul>
+  </div>
+  <div *ngIf="detalhes.length">
+    <h3>Detalhes</h3>
+    <ul>
+      <li *ngFor="let v of detalhes">
+        Viagem:
+        Início: {{ v.inicio.data | date:'short' }} |
+        Fim: {{ v.fim?.data | date:'short' }}
+        <span *ngIf="v.fim?.data && v.inicio?.data">
+          Duração: {{ getDuracaoViagem(v) }}
+        </span>
+        <ng-container [ngSwitch]="totalSelecionado">
+          <span *ngSwitchCase="'viagens'"></span>
+          <span *ngSwitchCase="'horas'">
+              Horas: {{ getHorasViagem(v) | number:'1.2-2' }}
+          </span>
+          <span *ngSwitchCase="'km'">Km: {{ v.quilometros | number:'1.2-2' }}</span>
+        </ng-container>
+        <button class="detalhe-btn" [routerLink]="['/taxis/detail', v.taxiId]">Ver Táxi</button>
+        <button class="detalhe-btn" [routerLink]="['/motoristas', v.motoristaId]">Ver Motorista</button>
+      </li>
+    </ul>
+  </div>
+</div>

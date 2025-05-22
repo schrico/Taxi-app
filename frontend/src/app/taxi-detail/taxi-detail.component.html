@@ -1,0 +1,22 @@
+<div *ngIf="taxi">
+  <h2>Detalhes do Táxi</h2>
+  <div class="taxi-details">
+    <div class="detail-item">
+      <label>Marca:</label>
+      <span class="detail-value">{{taxi.marca}}</span>
+    </div>
+    <div class="detail-item">
+      <label>Modelo:</label>
+      <span class="detail-value">{{taxi.modelo}}</span>
+    </div>
+    <div class="detail-item">
+      <label>Matrícula:</label>
+      <span class="detail-value">{{taxi.matricula | slice:0:2}} - {{taxi.matricula | slice:2:4}} - {{taxi.matricula | slice:4:6}}</span>
+    </div>
+    <div class="detail-item">
+      <label>Ano de Compra:</label>
+      <span class="detail-value">{{taxi.anoCompra}}</span>
+    </div>
+  </div>
+  <button type="button" (click)="goBack()">Voltar</button>
+</div> 

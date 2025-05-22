@@ -1,0 +1,103 @@
+<div class="form-container">
+    <h2>Pedir Táxi</h2>
+    <form [formGroup]="pedidoForm" (ngSubmit)="onSubmit()">
+      <fieldset formGroupName="cliente">
+        <legend>Dados do Cliente</legend>
+        <input type="text" formControlName="nome" placeholder="Nome">
+        <div *ngIf="pedidoForm.get('cliente.nome')?.touched && pedidoForm.get('cliente.nome')?.invalid" class="error-message">
+          Nome é obrigatório.
+        </div>
+        <input type="text" formControlName="nif" placeholder="NIF">
+        <ng-container *ngIf="pedidoForm.get('cliente.nif') as nifCtrl">
+          <div *ngIf="nifCtrl.touched && nifCtrl.errors?.['required']" class="error-message">
+            NIF é obrigatório.
+          </div>
+          <div *ngIf="nifCtrl.touched && nifCtrl.errors?.['pattern']" class="error-message">
+            NIF deve ter 9 dígitos.
+          </div>
+        </ng-container>
+        <select formControlName="genero">
+          <option value="">Género</option>
+          <option value="masculino">Masculino</option>
+          <option value="feminino">Feminino</option>
+        </select>
+        <div *ngIf="pedidoForm.get('cliente.genero')?.touched && pedidoForm.get('cliente.genero')?.invalid" class="error-message">
+          Género é obrigatório.
+        </div>
+      </fieldset>
+      <fieldset formGroupName="origem">
+        <legend>Origem</legend>
+        <button type="button" (click)="getCurrentLocation()" [disabled]="loadingLocation">
+          {{ loadingLocation ? 'A obter localização...' : 'Usar minha localização' }}
+        </button>
+        <input type="text" formControlName="rua" placeholder="Rua">
+        <div *ngIf="pedidoForm.get('origem.rua')?.touched && pedidoForm.get('origem.rua')?.invalid" class="error-message">
+          Rua é obrigatória.
+        </div>
+        <input type="number" formControlName="nmrPorta" placeholder="Nº Porta">
+        <div *ngIf="pedidoForm.get('origem.nmrPorta')?.touched && pedidoForm.get('origem.nmrPorta')?.invalid" class="error-message">
+          Nº Porta é obrigatório.
+        </div>
+        <input type="text" formControlName="codigoPostal" placeholder="Código Postal">
+        <ng-container *ngIf="pedidoForm.get('origem.codigoPostal') as codPostalOrigemCtrl">
+          <div *ngIf="codPostalOrigemCtrl.touched && codPostalOrigemCtrl.errors?.['required']" class="error-message">
+            Código Postal é obrigatório.
+          </div>
+          <div *ngIf="codPostalOrigemCtrl.touched && codPostalOrigemCtrl.errors?.['pattern']" class="error-message">
+            Formato: 1234-123
+          </div>
+        </ng-container>
+      </fieldset>
+      <fieldset formGroupName="destino">
+        <legend>Destino</legend>
+        <button type="button" (click)="openMapDestino()" [disabled]="loadingDestinoLocation">
+          {{ loadingDestinoLocation ? 'A obter localização...' : 'Escolher no mapa' }}
+        </button>
+        <input type="text" formControlName="rua" placeholder="Rua">
+        <div *ngIf="pedidoForm.get('destino.rua')?.touched && pedidoForm.get('destino.rua')?.invalid" class="error-message">
+          Rua é obrigatória.
+        </div>
+        <input type="number" formControlName="nmrPorta" placeholder="Nº Porta">
+        <div *ngIf="pedidoForm.get('destino.nmrPorta')?.touched && pedidoForm.get('destino.nmrPorta')?.invalid" class="error-message">
+          Nº Porta é obrigatório.
+        </div>
+        <input type="text" formControlName="codigoPostal" placeholder="Código Postal">
+        <ng-container *ngIf="pedidoForm.get('destino.codigoPostal') as codPostalDestinoCtrl">
+          <div *ngIf="codPostalDestinoCtrl.touched && codPostalDestinoCtrl.errors?.['required']" class="error-message">
+            Código Postal é obrigatório.
+          </div>
+          <div *ngIf="codPostalDestinoCtrl.touched && codPostalDestinoCtrl.errors?.['pattern']" class="error-message">
+            Formato: 1234-123
+          </div>
+        </ng-container>
+      </fieldset>
+      <label for="conforto">Nível de Conforto:</label>
+      <select id="conforto" formControlName="conforto">
+        <option value="">Selecione</option>
+        <option value="Básico">Básico</option>
+        <option value="Luxuoso">Luxuoso</option>
+      </select>
+      <div *ngIf="pedidoForm.get('conforto')?.touched && pedidoForm.get('conforto')?.invalid" class="error-message">
+        Nível de conforto é obrigatório.
+      </div>
+      <label for="nmrPessoas">Nº de Pessoas:</label>
+      <input type="number" id="nmrPessoas" formControlName="nmrPessoas" min="1">
+      <ng-container *ngIf="pedidoForm.get('nmrPessoas') as nmrPessoasCtrl">
+        <div *ngIf="nmrPessoasCtrl.touched && nmrPessoasCtrl.errors?.['required']" class="error-message">
+          Nº de pessoas é obrigatório.
+        </div>
+        <div *ngIf="nmrPessoasCtrl.touched && nmrPessoasCtrl.errors?.['min']" class="error-message">
+          Deve ser pelo menos 1.
+        </div>
+      </ng-container>
+      <button type="submit" [disabled]="!pedidoForm.valid">Pedir Táxi</button>
+    </form>
+    <div *ngIf="mensagem" class="success">{{mensagem}}</div>
+    <div *ngIf="erro" class="error">{{erro}}</div>
+    <div *ngIf="showMapDestino" class="map-modal">
+      <div class="map-modal-content">
+        <div id="mapDestino"></div>
+        <button type="button" (click)="closeMapDestino()">Fechar</button>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+<div class="container">
+  <h2>Registar Viagem</h2>
+  
+  
+  <div *ngIf="mensagem" class="alert-sucesso">
+    {{ mensagem }}
+  </div>
+  
+  <!-- Sem turno ativo -->
+  <div *ngIf="!turnoAtivo" class="alerta-turno">
+    <i class="icon-alerta"></i>
+    <p>É necessário ter um turno ativo para registrar viagens.</p>
+  </div>
+  
+  <!-- Viagem em andamento -->
+  <div *ngIf="viagemAtiva" class="viagem-ativa">
+    <h3>Viagem em Andamento</h3>
+    
+    <div class="card-info">
+      <div class="info-row">
+        <span class="label">Origem:</span>
+        <span class="value">{{ viagemAtiva.inicio.morada.rua }}</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Destino:</span>
+        <span class="value">{{ viagemAtiva.fim?.morada?.rua }}</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Início:</span>
+        <span class="value">{{ viagemAtiva.inicio.data | date:'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Passageiros:</span>
+        <span class="value">{{ viagemAtiva.nmrPessoas }}</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Duração:</span>
+        <span class="value">{{ duracaoViagem }}</span>
+      </div>
+    </div>
+    
+    <div class="acoes">
+      <button 
+        [disabled]="carregando" 
+        class="btn-finalizar" 
+        (click)="finalizarViagem()">
+        {{ carregando ? 'Finalizando...' : 'Finalizar Viagem' }}
+      </button>
+    </div>
+  </div>
+  
+  <!-- Seleção de pedido para iniciar viagem -->
+  <div *ngIf="!viagemAtiva && turnoAtivo" class="selecao-pedido">
+    <h3>Iniciar Nova Viagem</h3>
+    
+    <div *ngIf="pedidosAceitos.length === 0" class="sem-pedidos">
+      <p>Não há pedidos aceitos disponíveis para iniciar uma viagem.</p>
+    </div>
+    
+    <div *ngIf="pedidosAceitos.length > 0" class="lista-pedidos">
+      <h4>Selecione um Pedido</h4>
+      
+      <div *ngFor="let pedido of pedidosAceitos" 
+          class="pedido-item"
+          [class.selected]="pedidoSelecionado && pedidoSelecionado._id === pedido._id"
+          (click)="selecionarPedido(pedido)">
+        <div class="pedido-info">
+          <div class="header">
+            <span class="cliente">Cliente: {{ pedido.cliente || 'Não informado' }}</span>
+            <span class="data">{{ pedido.dataPedido | date:'dd/MM/yyyy HH:mm' }}</span>
+          </div>
+          <div class="info-row">
+            <span class="label">Origem:</span>
+            <span class="value">{{ pedido.origem.rua }}</span>
+          </div>
+          <div class="info-row">
+            <span class="label">Destino:</span>
+            <span class="value">{{ pedido.destino.rua }}</span>
+          </div>
+          <div class="dados-adicionais">
+            <span class="passageiros">{{ pedido.nmrPessoas }} passageiro(s)</span>
+            <span *ngIf="pedido.conforto" class="conforto">
+              Conforto: {{ pedido.conforto }}
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <button 
+        [disabled]="!pedidoSelecionado || carregando" 
+        class="btn-iniciar" 
+        (click)="iniciarViagem()">
+        {{ carregando ? 'Iniciando...' : 'Iniciar Viagem' }}
+      </button>
+    </div>
+  </div>
+</div>

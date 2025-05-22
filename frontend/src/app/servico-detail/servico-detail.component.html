@@ -1,0 +1,22 @@
+<div *ngIf="servico">
+  <h2>Detalhes do Serviço</h2>
+  <div class="servico-details">
+
+    <div class="detail-item">
+      <label>Preço por Minuto (Básico):</label>
+      <span class="detail-value">{{servico.ppmBasico}}</span>
+    </div>
+
+    <div class="detail-item">
+      <label>Preço por Minuto (Luxuoso):</label>
+      <span class="detail-value">{{servico.ppmLuxuoso}}</span>
+    </div>
+
+    <div class="detail-item">
+      <label>Acréscimo Noturno (21:00 - 06:00, em porcentagem):</label>
+      <span class="detail-value">{{servico.acrescimoNoturno}}</span>
+    </div>
+  </div>
+  <button type="button" (click)="goBack()">Voltar</button>
+  <button type="button" (click)="calcularViagem()">Calcular Viagem</button>
+</div>

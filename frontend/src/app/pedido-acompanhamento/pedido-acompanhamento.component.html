@@ -1,0 +1,29 @@
+<div class="container">
+    <h2>Acompanhamento do Pedido</h2>
+  
+    <div *ngIf="erro" class="alert alert-danger">
+      {{ erro }}
+    </div>
+    
+    <div *ngIf="!pedido && !erro" class="loading">
+      Carregando informações do pedido...
+    </div>
+  
+    <div *ngIf="pedido" class="pedido-info">
+      <p><strong>Estado:</strong> {{ pedido.estado }}</p>
+      
+      <div *ngIf="pedido.estado === 'pendente' || pedido.estado === 'Pendente'" class="status-message">
+        Aguardando um motorista aceitar seu pedido...
+      </div>
+      
+      <div *ngIf="pedido.estado === 'motorista_aceito' || pedido.estado === 'Aceite-Motorista'" class="status-message">
+        <p>{{ mensagem }}</p>
+        <div class="botoes-acao">
+          <button class="btn-aceitar" (click)="aceitarMotorista()">Aceitar Motorista</button>
+          <button class="btn-rejeitar" (click)="rejeitarMotorista()">Rejeitar Motorista</button>
+        </div>
+      </div>
+      
+      <button class="btn-cancelar" (click)="cancelarPedido()">Cancelar Pedido</button>
+    </div>
+  </div>
